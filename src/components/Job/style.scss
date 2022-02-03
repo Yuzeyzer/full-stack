@@ -1,0 +1,66 @@
+@import "../../assets/scss/global.scss";
+
+.job {
+	@include flex(space-between);
+	background-color: #fff;
+	max-width: 1110px;
+	border-radius: 5px;
+	box-shadow: 0 0 15px #d4e9ec;
+	padding: 32px;
+	margin-bottom: 25px;
+	&_active {
+		border-left: 5px solid $bg-color-primary;
+	}
+	&-details,
+	&-skills,
+	&__left {
+		display: flex;
+	}
+	&__image {
+		margin-right: 25px;
+	}
+	&__logo {
+		width: 88px;
+		height: 88px;
+		border-radius: 50%;
+	}
+	&-company {
+		&__name {
+			color: $color-primary;
+			font-weight: 700;
+		}
+		&__name + span {
+			margin-left: 15px;
+		}
+		&__new,
+		&__featured {
+			@include font(10px, 700);
+			color: #fff;
+			text-transform: uppercase;
+			border-radius: 15px;
+			padding: 8px 6px 6px;
+			margin: 0 8px;
+		}
+		&__new {
+			background-color: $bg-color-primary;
+		}
+		&__featured {
+			background-color: $bg-color-neutral-very-dark-gray;
+		}
+	}
+	&__title {
+		margin: 10px 0 15px;
+	}
+	&-skills {
+		&__item {
+			margin-left: 15px;
+			background-color: $bg-color-neutral-light-gray;
+			color: $color-primary;
+			font-weight: 700;
+			padding: 8px;
+			border-radius: 5px;
+			font-size: 12px;
+			cursor: pointer;
+		}
+	}
+}

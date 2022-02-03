@@ -1,0 +1,13 @@
+.filter {
+	left: 0;
+	top: -80px;
+	width: 100%;
+	transform: translateY(-50%);
+	position: absolute;
+	padding: 20px 40px;
+	background-color: #fff;
+
+	&__list {
+		display: flex;
+	}
+}

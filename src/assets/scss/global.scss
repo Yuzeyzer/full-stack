@@ -1,0 +1,21 @@
+$color-primary: hsl(180, 29%, 50%);
+$color-neutral-dark-gray: hsl(180, 8%, 52%);
+$color-neutral-very-dark-gray: hsl(180, 14%, 20%);
+$color-neutral-light-gray: hsl(180, 31%, 95%);
+
+$bg-color-neutral-light-gray: hsl(180, 52%, 96%);
+$bg-color-primary: hsl(180, 29%, 50%);
+$bg-color-neutral-very-dark-gray: hsl(180, 14%, 20%);
+
+@mixin font($size, $weight, $lineHeight: 1.5) {
+	font-size: $size;
+	font-style: normal;
+	font-weight: $weight;
+	$lineHeight: $lineHeight;
+}
+
+@mixin flex($justify: center, $align: center) {
+	display: flex;
+	justify-content: $justify;
+	align-items: $align;
+}
