@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { baseUrl } from '../../api';
+import { v4 as uuid } from 'uuid';
+import { Issues } from '../../services/issues';
 import { ButtonPrimary } from '../Button/Button';
 import './style.scss';
 
@@ -10,40 +11,18 @@ const CreateIssue = () => {
   };
 
   const postNewIssue = async (event) => {
+    const issuesService = new Issues();
+    const uniqId = uuid();
+
     const { title, description } = event.target.elements;
 
-    const response = await fetch(baseUrl + '/issues');
-    const json = await response.json();
-
-    await fetch(baseUrl + '/issues', {
-      method: 'POST',
-      body: JSON.stringify({
-        ...json,
-        tasks: {
-          ...json.tasks,
-          oolleegg: {
-            id: 'oolleegg',
-            title: title.value,
-            description: description.value,
-          },
-        },
-      }),
-      headers: { 'Content-Type': 'application/json' },
+    await issuesService.create({
+      id: uniqId,
+      title: title.value,
+      description: description.value,
     });
 
-    await fetch(baseUrl + '/issues', {
-      method: 'PATCH',
-      body: JSON.stringify({
-        columns: {
-					...json.columns,
-          column1: {
-						...json.columns.column1,
-            taskIds: [...json.columns.column1.taskIds, 'oolleegg'],
-          },
-        },
-      }),
-      headers: { 'Content-Type': 'application/json' },
-    });
+    await issuesService.updateColumns('column1', uniqId);
   };
 
   return (

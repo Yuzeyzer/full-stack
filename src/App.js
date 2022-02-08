@@ -3,7 +3,7 @@ import Column from './components/Column/Column';
 import { ButtonPrimary } from './components/Button/Button';
 import React, { useEffect, useState } from 'react';
 import './app.scss';
-import { baseUrl } from './api';
+import { Issues } from './services/issues';
 import Modal from './components/Modal/Modal';
 import CreateIssue from './components/CreateIssue/CreateIssue';
 
@@ -18,10 +18,11 @@ function App() {
   const handleShowModal = (bool) => setShowModal(bool);
 
   const getIssues = async () => {
-    const response = await fetch(baseUrl + '/issues');
-    const json = await response.json();
+    const response = new Issues();
 
-    setData(json);
+    const issues = await response.read();
+
+    setData(issues);
   };
 
   const onDragEnd = (result) => {
